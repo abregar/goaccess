@@ -206,6 +206,7 @@ get_module_enum (const char *str)
     {"REQUESTS"        , REQUESTS}        ,
     {"REQUESTS_STATIC" , REQUESTS_STATIC} ,
     {"NOT_FOUND"       , NOT_FOUND}       ,
+    {"FAILED"          , FAILED}       ,
     {"HOSTS"           , HOSTS}           ,
     {"OS"              , OS}              ,
     {"BROWSERS"        , BROWSERS}        ,

@@ -67,6 +67,7 @@
 #define VIRTUAL_HOSTS_ID   "vhosts"
 #define REMOTE_USER_ID     "remote_user"
 #define NOT_FOUND_ID       "not_found"
+#define FAILED_ID          "failed"
 #define HOSTS_ID           "hosts"
 #define OS_ID              "os"
 #define BROWSERS_ID        "browsers"

@@ -966,6 +966,10 @@ get_keys (void)
       /* reset expanded module */
       set_module_to (&gscroll, NOT_FOUND);
       break;
+    case 38:   /* Shift + 5 */
+        /* reset expanded module */
+        set_module_to(&gscroll, FAILED);
+       break;
     case 53:   /* 5 */
       /* reset expanded module */
       set_module_to (&gscroll, HOSTS);

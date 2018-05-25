@@ -71,6 +71,7 @@ static GPanel paneling[] = {
   {REQUESTS        , add_data_to_holder, NULL} ,
   {REQUESTS_STATIC , add_data_to_holder, NULL} ,
   {NOT_FOUND       , add_data_to_holder, NULL} ,
+  {FAILED          , add_data_to_holder, NULL} ,
   {HOSTS           , add_data_to_holder, add_host_child_to_holder} ,
   {OS              , add_root_to_holder, NULL} ,
   {BROWSERS        , add_root_to_holder, NULL} ,

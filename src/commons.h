@@ -51,9 +51,9 @@ struct tm *now_tm;
 
 /* total number of modules */
 #ifdef HAVE_GEOLOCATION
-#define TOTAL_MODULES    15
+#define TOTAL_MODULES    16
 #else
-#define TOTAL_MODULES    14
+#define TOTAL_MODULES    15
 #endif
 
 /* maximum number of items within a panel */
@@ -95,6 +95,7 @@ typedef enum MODULES
   REQUESTS,
   REQUESTS_STATIC,
   NOT_FOUND,
+  FAILED,
   HOSTS,
   OS,
   BROWSERS,

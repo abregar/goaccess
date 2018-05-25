@@ -71,6 +71,7 @@ static GPanel paneling[] = {
   {REQUESTS        , print_csv_data} ,
   {REQUESTS_STATIC , print_csv_data} ,
   {NOT_FOUND       , print_csv_data} ,
+  {FAILED          , print_csv_data} ,
   {HOSTS           , print_csv_data} ,
   {OS              , print_csv_data} ,
   {BROWSERS        , print_csv_data} ,
