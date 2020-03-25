@@ -82,6 +82,7 @@ typedef struct GLogItem_ {
   int ignorelevel;
   int type_ip;
   int is_404;
+  int is_50x;
   int is_static;
   int uniq_nkey;
   int agent_nkey;

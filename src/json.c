@@ -84,6 +84,7 @@ static GPanel paneling[] = {
   {REQUESTS            , print_json_data , NULL } ,
   {REQUESTS_STATIC     , print_json_data , NULL } ,
   {NOT_FOUND           , print_json_data , NULL } ,
+  {FAILED              , print_json_data , NULL } ,
   {HOSTS               , print_json_data , print_json_host_items } ,
   {OS                  , print_json_data , print_json_sub_items } ,
   {BROWSERS            , print_json_data , print_json_sub_items } ,

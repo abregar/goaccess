@@ -75,6 +75,7 @@
 /* key/data generators for each module */
 static int gen_visitor_key (GKeyData * kdata, GLogItem * logitem);
 static int gen_404_key (GKeyData * kdata, GLogItem * logitem);
+static int gen_50x_key (GKeyData * kdata, GLogItem * logitem);
 static int gen_browser_key (GKeyData * kdata, GLogItem * logitem);
 static int gen_host_key (GKeyData * kdata, GLogItem * logitem);
 static int gen_keyphrase_key (GKeyData * kdata, GLogItem * logitem);
@@ -154,6 +155,19 @@ static GParse paneling[] = {
   }, {
     NOT_FOUND,
     gen_404_key,
+    insert_data,
+    NULL,
+    insert_hit,
+    insert_visitor,
+    insert_bw,
+    insert_cumts,
+    insert_maxts,
+    insert_method,
+    insert_protocol,
+    NULL,
+  }, {
+    FAILED,
+    gen_50x_key,
     insert_data,
     NULL,
     insert_hit,
@@ -1723,6 +1737,19 @@ is_404 (GLogItem * logitem) {
   return 0;
 }
 
+static int
+is_50x (GLogItem * logitem)
+{
+
+  /* is this a 50x? */
+//  if (logitem->status && !memcmp(logitem->status, "502", 3)) {
+    if (logitem->status && (!memcmp(logitem->status, "500", 3) || !memcmp(logitem->status, "502", 3) ||
+                            !memcmp(logitem->status, "503", 3) || !memcmp(logitem->status, "504", 3))) {
+        return 1;
+    }
+    return 0;
+}
+
 /* A wrapper function to determine if a log line needs to be ignored.
  *
  * If the request line is not ignored, 0 is returned.
@@ -2042,7 +2069,7 @@ gen_req_key (GKeyData * kdata, GLogItem * logitem) {
  */
 static int
 gen_request_key (GKeyData * kdata, GLogItem * logitem) {
-  if (!logitem->req || logitem->is_404 || logitem->is_static)
+  if (!logitem->req || logitem->is_404 || logitem->is_static || logitem->is_50x)
     return 1;
 
   return gen_req_key (kdata, logitem);
@@ -2059,6 +2086,15 @@ gen_404_key (GKeyData * kdata, GLogItem * logitem) {
     return gen_req_key (kdata, logitem);
   return 1;
 }
+
+static int
+gen_50x_key(GKeyData *kdata, GLogItem *logitem)
+{
+  if (logitem->req && logitem->is_50x)
+    return gen_req_key (kdata, logitem);
+  return 1;
+}
+
 
 /* A wrapper to generate a unique key for the request panel.
  *
@@ -2565,6 +2601,8 @@ pre_process_log (GLog * glog, char *line, int dry_run) {
 
   if (is_404 (logitem))
     logitem->is_404 = 1;
+  else if (is_50x(logitem))
+    logitem->is_50x = 1;
   else if (is_static (logitem->req))
     logitem->is_static = 1;
 

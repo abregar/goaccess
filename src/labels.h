@@ -152,6 +152,13 @@
 #define NOT_FOUND_LABEL                \
   N_("Not Found")
 
+#define FAILED_HEAD                 \
+  N_("Failed URLs (50x)")
+#define FAILED_DESC                 \
+  N_("Top failed URLs sorted by hits [, avgts, cumts, maxts, mthd, proto]")
+#define FAILED_LABEL                \
+  N_("Failed")
+
 #define HOSTS_HEAD                     \
   N_("Visitor Hostnames and IPs")
 #define HOSTS_DESC                     \

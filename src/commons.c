@@ -61,6 +61,7 @@ static GEnum enum_modules[] = {
     {"REQUESTS"        , REQUESTS}        ,
     {"REQUESTS_STATIC" , REQUESTS_STATIC} ,
     {"NOT_FOUND"       , NOT_FOUND}       ,
+    {"FAILED"          , FAILED}          ,
     {"HOSTS"           , HOSTS}           ,
     {"OS"              , OS}              ,
     {"BROWSERS"        , BROWSERS}        ,

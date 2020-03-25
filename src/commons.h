@@ -43,7 +43,7 @@
 #define __attribute__(x) /**/
 #endif
 #define GO_UNUSED __attribute__((unused))
-#define GO_VERSION 		"1.4"
+#define GO_VERSION 		"1.4-ab-mod"
 #define GO_WEBSITE 		"http://goaccess.io/"
 extern struct tm *now_tm;
 
@@ -52,9 +52,9 @@ extern struct tm *now_tm;
 
 /* total number of modules */
 #ifdef HAVE_GEOLOCATION
-#define TOTAL_MODULES    16
+#define TOTAL_MODULES    17
 #else
-#define TOTAL_MODULES    15
+#define TOTAL_MODULES    16
 #endif
 
 /* maximum number of items within a panel */
