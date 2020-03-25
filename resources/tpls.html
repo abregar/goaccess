@@ -1,7 +1,7 @@
 <!-- TPL General  -->
 <script id="tpl-general" type="text/template">
-	<h4 class="hidden-xs gheader">{{head}}<span class="pull-right"><span class="from"></span> &#8212; <span class="to"></span></span></h4>
-	<h5 class="visible-xs hidden-sm hidden-md hidden-lg gheader">{{head}}&nbsp;&nbsp;<span class="from"></span> &#8212; <span class="to"></span></span></h5>
+	<h4 class="hidden-xs gheader">{{head}}<span class="pull-right">{{#from}}<span class="from">{{from}}</span>{{/from}}{{#to}} &#8212; <span class="to">{{to}}</span>{{/to}}</span></h4>
+	<h5 class="visible-xs hidden-sm hidden-md hidden-lg gheader">{{head}}&nbsp;&nbsp;{{#from}}<span class="from">{{from}}</span>{{/from}}{{#to}} &#8212; <span class="to">{{to}}</span>{{/to}}</h5>
 	<div class="wrap-general-items"></div>
 </script>
 
@@ -75,11 +75,11 @@
 
 <!-- TPL Panel Options DropDown -->
 <script id="tpl-panel-opts" type="text/template">
-	<li class="dropdown-header">Chart Options</li>
+	<li class="dropdown-header">{{ labels.chart_opts }}</li>
 	<li><a href="javascript:void(0);" data-panel="{{id}}" data-chart="{{showChart}}"><i class="fa fa-{{#showChart}}check-{{/showChart}}square-o"></i> {{labels.chart}}</a></li>
 
 	{{#plot.length}}
-	<li class="dropdown-header">Type</li>
+	<li class="dropdown-header">{{ labels.type }}</li>
 	<li><a href="javascript:void(0);" data-panel="{{id}}" data-chart-type="area-spline"><i class="fa fa-circle{{^area-spline}}-o{{/area-spline}}"></i> {{labels.area_spline}}</a></li>
 	<li><a href="javascript:void(0);" data-panel="{{id}}" data-chart-type="bar"><i class="fa fa-circle{{^bar}}-o{{/bar}}"></i> {{labels.bar}}</a></li>
 	<li class="dropdown-header">{{labels.plot_metric}}</li>
@@ -206,6 +206,9 @@
 		</li>
 		<li {{#darkBlue}}class="active"{{/darkBlue}}>
 			<a href="javascript:void(0);" class="theme-dark-blue"><i class="fa fa-circle{{^darkBlue}}-o{{/darkBlue}}"></i> {{labels.dark_blue}}</a>
+		</li>
+		<li {{#darkPurple}}class="active"{{/darkPurple}}>
+			<a href="javascript:void(0);" class="theme-dark-purple"><i class="fa fa-circle{{^darkPurple}}-o{{/darkPurple}}"></i> {{labels.dark_purple}}</a>
 		</li>
 	</ul>
 	<h3><i class="fa fa-list-alt"></i> {{labels.panels}}</h3>

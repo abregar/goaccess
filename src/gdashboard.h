@@ -6,7 +6,7 @@
  * \____/\____/_/  |_\___/\___/\___/____/____/
  *
  * The MIT License (MIT)
- * Copyright (c) 2009-2016 Gerardo Orellana <hello @ goaccess.io>
+ * Copyright (c) 2009-2020 Gerardo Orellana <hello @ goaccess.io>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -77,8 +77,8 @@ typedef struct GDashData_
 /* Dashboard panel meta data */
 typedef struct GDashMeta_
 {
-  int max_hits;          /* maximum value on the hits column */
-  int max_visitors;      /* maximum value on the visitors column */
+  uint32_t max_hits;          /* maximum value on the hits column */
+  uint32_t max_visitors;      /* maximum value on the visitors column */
 
   /* determine the maximum metric's length of these metrics */
   /* for instance, 1022 is the max value for the hits column and its length = 4 */

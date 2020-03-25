@@ -6,7 +6,7 @@
  * \____/\____/_/  |_\___/\___/\___/____/____/
  *
  * The MIT License (MIT)
- * Copyright (c) 2009-2016 Gerardo Orellana <hello @ goaccess.io>
+ * Copyright (c) 2009-2020 Gerardo Orellana <hello @ goaccess.io>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,8 +43,7 @@
 #define MAX_FILENAMES         512
 #define NO_CONFIG_FILE "No config file used"
 
-typedef enum LOGTYPE
-{
+typedef enum LOGTYPE {
   COMBINED,
   VCOMBINED,
   COMMON,
@@ -58,16 +57,14 @@ typedef enum LOGTYPE
 } GLogType;
 
 /* predefined log times */
-typedef struct GPreConfTime_
-{
+typedef struct GPreConfTime_ {
   const char *fmt24;
   const char *usec;
   const char *sec;
 } GPreConfTime;
 
 /* predefined log dates */
-typedef struct GPreConfDate_
-{
+typedef struct GPreConfDate_ {
   const char *apache;
   const char *w3c;
   const char *usec;
@@ -75,8 +72,7 @@ typedef struct GPreConfDate_
 } GPreConfDate;
 
 /* predefined log formats */
-typedef struct GPreConfLog_
-{
+typedef struct GPreConfLog_ {
   const char *combined;
   const char *vcombined;
   const char *common;
@@ -113,6 +109,8 @@ typedef struct GConf_
   char *spec_date_time_format;      /* date format w/ specificity */
   char *spec_date_time_num_format;  /* numeric date format w/ specificity */
   char *log_format;                 /* log format */
+  char *iconfigfile;                /* config file path */
+  char ***user_browsers_hash;       /* custom list of browsers */
 
   const char *debug_log;            /* debug log path */
   const char *geoip_database;       /* geoip db path */
@@ -120,9 +118,10 @@ typedef struct GConf_
   const char *html_custom_js;       /* custom JS */
   const char *html_prefs;           /* default HTML JSON preferences */
   const char *html_report_title;    /* report title */
-  const char *iconfigfile;          /* config file path */
   const char *invalid_requests_log; /* invalid lines log path */
   const char *pidfile;              /* daemonize pid file path */
+  const char *browsers_file;        /* browser's file path */
+  const char *db_path;              /* db path to files */
 
   /* HTML real-time */
   const char *addr;                 /* IP address to bind to */
@@ -135,8 +134,8 @@ typedef struct GConf_
   const char *ws_url;               /* WebSocket URL */
 
   /* User flags */
-  int store_accumulated_time;       /* store accumulated processing time in tcb */
   int all_static_files;             /* parse all static files */
+  int anonymize_ip;                 /* anonymize ip addresses */
   int append_method;                /* append method to the req key */
   int append_protocol;              /* append protocol to the req key */
   int client_err_to_unique_count;   /* count 400s as visitors */
@@ -161,14 +160,19 @@ typedef struct GConf_
   int no_column_names;              /* don't show col names on termnal */
   int no_csv_summary;               /* don't show overall metrics */
   int no_html_last_updated;         /* don't show HTML last updated field */
+  int no_ip_validation;             /* don't validate client IP addresses */
   int no_parsing_spinner;           /* disable parsing spinner */
   int no_progress;                  /* disable progress metrics */
   int no_tab_scroll;                /* don't scroll dashboard on tab */
   int output_stdout;                /* outputting to stdout */
+  int persist;                      /* ensure to persist data on exit */
   int process_and_exit;             /* parse and exit without outputting */
   int real_os;                      /* show real OSs */
   int real_time_html;               /* enable real-time HTML output */
+  int restore;                      /* reload data from db-path */
   int skip_term_resolver;           /* no terminal resolver */
+  int store_accumulated_time;       /* store accumulated processing time in tcb */
+  uint32_t keep_last;               /* number of days to keep in storage */
   uint32_t num_tests;               /* number of lines to test */
   uint64_t log_size;                /* log size override */
 
@@ -195,20 +199,10 @@ typedef struct GConf_
   int output_format_idx;            /* output format index */
   int sort_panel_idx;               /* sort panel index */
   int static_file_idx;              /* static extensions index */
+  int browsers_hash_idx;            /* browsers hash index */
 
   size_t static_file_max_len;
 
-  /* TokyoCabinet */
-  const char *db_path;              /* db path to files */
-  int64_t xmmap;                    /* size of the extra mapped memory */
-  int cache_lcnum;                  /* max num of leaf nodes to cache */
-  int cache_ncnum;                  /* max num of non-leaf nodes to cache */
-  int compression;                  /* deflate or BZIP2 */
-  int keep_db_files;                /* persist parsed data into disk */
-  int load_from_disk;               /* load stored data */
-  int tune_bnum;                    /* num of elems of the bucket array */
-  int tune_lmemb;                   /* num of memb in each leaf page */
-  int tune_nmemb;                   /* num of memb in each non-leaf page */
 } GConf;
 /* *INDENT-ON* */
 

@@ -50,7 +50,7 @@ window.GoAccess = window.GoAccess || {
 			'autoHideTables': true,
 			'layout': 'horizontal',
 			'perPage': 7,
-			'theme': 'darkBlue',
+			'theme': 'darkPurple',
 		};
 		this.AppPrefs = GoAccess.Util.merge(this.AppPrefs, this.opts.prefs);
 
@@ -279,11 +279,6 @@ GoAccess.Util = {
 
 // OVERALL STATS
 GoAccess.OverallStats = {
-	// Render general section wrapper
-	renderWrapper: function (ui) {
-		$('.wrap-general').innerHTML = GoAccess.AppTpls.General.wrap.render(ui);
-	},
-
 	// Render each overall stats box
 	renderBox: function (data, ui, row, x, idx) {
 		var wrap = $('.wrap-general-items');
@@ -312,12 +307,11 @@ GoAccess.OverallStats = {
 		var idx = 0, row = null;
 
 		$('.last-updated').innerHTML = data.date_time;
-		$$('span.from', function (item) {
-			item.innerHTML = data.start_date;
-		});
-		$$('span.to', function (item) {
-			item.innerHTML = data.end_date;
-		});
+		$('.wrap-general').innerHTML = GoAccess.AppTpls.General.wrap.render(GoAccess.Util.merge(ui, {
+			'from': data.start_date,
+			'to': data.end_date,
+		}));
+
 		// Iterate over general data object
 		for (var x in data) {
 			if (!data.hasOwnProperty(x) || !ui.items.hasOwnProperty(x))
@@ -332,7 +326,6 @@ GoAccess.OverallStats = {
 		var ui = GoAccess.getPanelUI('general');
 		var data = GoAccess.getPanelData('general'), i = 0;
 
-		this.renderWrapper(ui);
 		this.renderData(data, ui);
 	}
 };
@@ -380,6 +373,12 @@ GoAccess.Nav = {
 		$$('.theme-dark-gray', function (item) {
 			item.onclick = function (e) {
 				this.setTheme('darkGray');
+			}.bind(this);
+		}.bind(this));
+
+		$$('.theme-dark-purple', function (item) {
+			item.onclick = function (e) {
+				this.setTheme('darkPurple');
 			}.bind(this);
 		}.bind(this));
 
@@ -481,6 +480,10 @@ GoAccess.Nav = {
 		case 'darkBlue':
 			$('html').classList.add('dark');
 			$('html').classList.add('blue');
+			break;
+		case 'darkPurple':
+			$('html').classList.add('dark');
+			$('html').classList.add('purple');
 			break;
 		}
 		GoAccess.AppPrefs['theme'] = theme;

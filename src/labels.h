@@ -6,7 +6,7 @@
  * \____/\____/_/  |_\___/\___/\___/____/____/
  *
  * The MIT License (MIT)
- * Copyright (c) 2009-2016 Gerardo Orellana <hello @ goaccess.io>
+ * Copyright (c) 2009-2020 Gerardo Orellana <hello @ goaccess.io>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -57,7 +57,7 @@
 #define T_DASH_HEAD              _( "Dashboard - Overall Analyzed Requests")
 #define T_HEAD                   N_( "Overall Analyzed Requests")
 
-#define T_BW                     _( "Bandwidth")
+#define T_BW                     _( "Tx. Amount")
 #define T_DATETIME               _( "Date/Time")
 #define T_EXCLUDE_IP             _( "Excl. IP Hits")
 #define T_FAILED                 _( "Failed Requests")
@@ -78,7 +78,7 @@
 #define MTRC_VISITORS_LBL        _( "Visitors")
 #define MTRC_VISITORS_SHORT_LBL  _( "Vis.")
 #define MTRC_VISITORS_PERC_LBL   _( "v%")
-#define MTRC_BW_LBL              _( "Bandwidth")
+#define MTRC_BW_LBL              _( "Tx. Amount")
 #define MTRC_AVGTS_LBL           _( "Avg. T.S.")
 #define MTRC_CUMTS_LBL           _( "Cum. T.S.")
 #define MTRC_MAXTS_LBL           _( "Max. T.S.")
@@ -138,19 +138,19 @@
 #define REMOTE_USER_LABEL              \
   N_("Remote User")
 
+#define CACHE_STATUS_HEAD               \
+  N_("The cache status of the object served")
+#define CACHE_STATUS_DESC               \
+  N_("Data sorted by hits [, avgts, cumts, maxts]")
+#define CACHE_STATUS_LABEL              \
+  N_("Cache Status")
+
 #define NOT_FOUND_HEAD                 \
   N_("Not Found URLs (404s)")
 #define NOT_FOUND_DESC                 \
   N_("Top not found URLs sorted by hits [, avgts, cumts, maxts, mthd, proto]")
 #define NOT_FOUND_LABEL                \
   N_("Not Found")
-
-#define FAILED_HEAD                 \
-  N_("Failed URLs (50x)")
-#define FAILED_DESC                 \
-  N_("Top failed URLs sorted by hits [, avgts, cumts, maxts, mthd, proto]")
-#define FAILED_LABEL                \
-  N_("Failed")
 
 #define HOSTS_HEAD                     \
   N_("Visitor Hostnames and IPs")
@@ -257,10 +257,6 @@
   _("[UP/DOWN] to scroll - [q] to quit")
 
 /* Storage Built-in Option */
-#define BUILT_WITH_TCBTREE             \
-  _("Built using Tokyo Cabinet on-disk B+ Tree.")
-#define BUILT_WITH_TCMEMHASH           \
-  _("Built using Tokyo Cabinet in-memory hash database.")
 #define BUILT_WITH_DEFHASH             \
   _("Built using the default in-memory hash database.")
 
@@ -315,6 +311,8 @@
   N_("Bright")
 #define HTML_REPORT_NAV_DARK_BLUE      \
   N_("Dark Blue")
+#define HTML_REPORT_NAV_DARK_PURPLE    \
+  N_("Dark Purple")
 #define HTML_REPORT_NAV_PANELS         \
   N_("Panels")
 #define HTML_REPORT_NAV_ITEMS_PER_PAGE \
@@ -446,6 +444,8 @@
   N_("416 - Requested Range Not Satisfiable: Cannot supply that portion")
 #define STATUS_CODE_417               \
   N_("417 - Expectation Failed")
+#define STATUS_CODE_418               \
+  N_("418 - I’m a teapot")
 #define STATUS_CODE_421               \
   N_("421 - Misdirected Request")
 #define STATUS_CODE_422               \
